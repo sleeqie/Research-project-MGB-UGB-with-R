@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1605888871513.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "403233251",
+    "id" : "7F39E066",
+    "lastKnownWriteTime" : 1605976919,
+    "last_content_update" : 1605976919396,
+    "path" : "~/Desktop/training/coding/CODING.R",
+    "project_path" : "CODING.R",
+    "properties" : {
+        "cursorPosition" : "54,0",
+        "scrollLine" : "45",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
