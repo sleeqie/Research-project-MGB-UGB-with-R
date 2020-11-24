@@ -65,6 +65,29 @@ sum(baskets.of.Granny)
 #You install a package in R with the function — wait for it — install.packages(). 
 install.packages ("fortunes")
 
+#Loading and unloading packages
+#So, before you can use a package, 
+#you have to load it into R by using the library() function.
+#You load the fortunes package like this:
+
+library(fortunes)
+fortune("This is R")
+
+fortune(161)
+
+#You can use the fortune() function without arguments to 
+#get a random selection of the fortunes available in the package. 
+#It’s a nice read.
+
+#To unload a package, use the detach() function
+detach(package:fortunes)
+
+
+
+
+
+
+
 
 
 
