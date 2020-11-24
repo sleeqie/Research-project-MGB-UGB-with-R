@@ -53,6 +53,8 @@ ls()
 #to removevariable from the workspace
 rm(y)
 
+#thats all for chapter 1-2
+
 
 
 
