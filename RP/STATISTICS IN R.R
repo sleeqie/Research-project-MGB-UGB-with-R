@@ -250,29 +250,125 @@ print(summary(result))
 #Now we can compare the two models to conclude if the interaction of the variables is truly in-significant. For this we use the anova() function.
 # Get the dataset.
 input <- mtcars
-
 # Create the regression models.
 result1 <- aov(mpg~hp*am,data = input)
 result2 <- aov(mpg~hp+am,data = input)
-
 # Compare the two models.
 print(anova(result1,result2))
 
+#Time Series Analysis
+# Get the data points in form of a R vector.
+rainfall <- c(799,1174.8,865.1,1334.6,635.4,918.5,685.5,998.6,784.2,985,882.8,1071)
+# Convert it to a time series object.
+rainfall.timeseries <- ts(rainfall,start = c(2012,1),frequency = 12)
+# Print the timeseries data.
+print(rainfall.timeseries)
+# Give the chart file a name.
+png(file = "rainfall.png")
+# Plot a graph of the time series.
+plot(rainfall.timeseries)
+# Save the file.
+dev.off()
 
+#Multiple Time Series
+# Get the data points in form of a R vector.
+rainfall1 <- c(799,1174.8,865.1,1334.6,635.4,918.5,685.5,998.6,784.2,985,882.8,1071)
+rainfall2 <- 
+  c(655,1306.9,1323.4,1172.2,562.2,824,822.4,1265.5,799.6,1105.6,1106.7,1337.8)
+# Convert them to a matrix.
+combined.rainfall <-  matrix(c(rainfall1,rainfall2),nrow = 12)
+# Convert it to a time series object.
+rainfall.timeseries <- ts(combined.rainfall,start = c(2012,1),frequency = 12)
+# Print the timeseries data.
+print(rainfall.timeseries)
+# Give the chart file a name.
+png(file = "rainfall_combined.png")
+# Plot a graph of the time series.
+plot(rainfall.timeseries, main = "Multiple Time Series")
+# Save the file.
+dev.off()
 
+#R - Nonlinear Least Square
+#nls(formula, data, start)
+#a = b1*x^2+b2 eqn
+xvalues <- c(1.6,2.1,2,2.23,3.71,3.25,3.4,3.86,1.19,2.21)
+yvalues <- c(5.19,7.43,6.94,8.11,18.75,14.88,16.06,19.12,3.21,7.58)
+# Give the chart file a name.
+png(file = "nls.png")
+# Plot these values.
+plot(xvalues,yvalues)
+# Take the assumed values and fit into the model.
+model <- nls(yvalues ~ b1*xvalues^2+b2,start = list(b1 = 1,b2 = 3))
+# Plot the chart with new data by fitting it to a prediction from 100 data points.
+new.data <- data.frame(xvalues = seq(min(xvalues),max(xvalues),len = 100))
+lines(new.data$xvalues,predict(model,newdata = new.data))
+# Save the file.
+dev.off()
+# Get the sum of the squared residuals.
+print(sum(resid(model)^2))
+# Get the confidence intervals on the chosen values of the coefficients.
+print(confint(model))
 
+#DECISION TREE
+#Decision tree is a graph to represent choices and their results in form of a tree.
+# Load the party package. It will automatically load other
+# dependent packages.
+library(party)
+# Print some records from data set readingSkills.
+print(head(readingSkills))
+# Load the party package. It will automatically load other dependent packages.
+library(party)
+# Create the input data frame.
+input.dat <- readingSkills[c(1:105),]
+# Give the chart file a name.
+png(file = "decision_tree.png")
+# Create the tree.
+output.tree <- ctree(
+  nativeSpeaker ~ age + shoeSize + score, 
+  data = input.dat)
+# Plot the tree.
+plot(output.tree)
+# Save the file.
+dev.off()
 
+#RANDOM FOREST
+# Load the party package. It will automatically load other
+# required packages.
+library(party)
+library(randomForest)
+# Create the forest.
+output.forest <- randomForest(nativeSpeaker ~ age + shoeSize + score, 
+                              data = readingSkills)
+# View the forest results.
+print(output.forest) 
+# Importance of each predictor.
+print(importance(fit,type = 2)) 
 
+#SURVIVAL ANALYSIS
+# Load the library.
+library("survival")
+# Print first few rows.
+print(pbcseq)
+#to be continued, check material
 
+#CHI SQUARE TEST
+#Chi-Square test is a statistical method to determine if two categorical variables have a significant correlation between them. Both those variables should be from same population and they should be categorical like − Yes/No, Male/Female, Red/Green etc.
+library("MASS")
+print(str(Cars93))
+?str
+Live Demo
+# Load the library.
+library("MASS")
 
+# Create a data frame from the main data set.
+car.data <- data.frame(Cars93$AirBags, Cars93$Type)
 
+# Create a table with the needed variables.
+car.data = table(Cars93$AirBags, Cars93$Type) 
+print(car.data)
 
-
-
-
-
-
-
+# Perform the Chi-Square test.
+print(chisq.test(car.data))
 
 
 
